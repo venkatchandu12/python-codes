@@ -1,0 +1,46 @@
+Four Sum
+Given an array nums of n integers and an integer target, are there elements a, b, c, and d in nums such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.
+
+Note:
+
+The solution set must not contain duplicate quadruplets.
+
+Example:
+
+Given array nums = [1, 0, -1, 0, -2, 2], and target = 0.  
+
+Your answer must be:
+
+[   
+[-2, -1, 1, 2],
+[-2,  0, 0, 2],
+[-1,  0, 0, 1]
+]
+class Solution:
+    def Four_Sum(self, Arr, target):
+        # write your method here
+        k=[]
+        Arr.sort()
+        n=len(Arr)
+        for i in range(n):
+            for j in range(i+1,n):
+                l=j+1
+                r=n-1
+                while l<r:
+                    s=[Arr[i],Arr[j],Arr[l],Arr[r]]
+                    v=sum(s)
+                    if v==target:
+                        if s not in k:
+                            k.append(s)
+                        l+=1
+                        r-=1
+                    elif v<target:
+                        l+=1
+                    elif v>target:
+                        r-=1
+                   
+                    
+            
+       
+        return k
+                        
