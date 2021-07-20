@@ -1,0 +1,9 @@
+def make(A):
+    result = [None] * N
+    stack = []  # invariant: stack is decreasing
+    for i in A:
+        while stack and i > stack[-1]:
+            result[stack.pop()] = i
+        stack.append(i)
+    return result
+If I run it on the following input A = [0, 2, 1, 3, 4] I get [2, 3, 3, 4, None].
