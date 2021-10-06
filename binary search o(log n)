@@ -1,0 +1,15 @@
+a=list(map(int,input().split()))
+key=int(input())
+low=0
+high=len(a)-1
+while low<=high:
+    mid=(low+high)//2
+    if a[mid]==key:
+        print(mid)
+        break
+    elif a[mid]<key:
+        low=mid+1 
+    else:
+        low=mid-1
+else:
+    print("no element is found")
