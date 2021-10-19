@@ -1,0 +1,36 @@
+set[]={3, 4, 5, 2}
+target=6
+ 
+    0    1    2    3    4    5    6
+
+0   T    F    F    F    F    F    F
+
+3   T    F    F    T    F    F    F
+     
+4   T    F    F    T    T    F    F   
+      
+5   T    F    F    T    T    T    F
+
+2   T    F    T    T    T    T    T
+
+def isSubsetSum(l,subsetsum,n):
+    dp=[[False for i in range(subsetsum+1)]for j in range(n+1)]
+    for i in range(0,n+1):
+        dp[i][0]=True
+    for i in range(1,n+1):
+        dp[0][i]=False
+    for i in range(1,n+1):
+        for j in range(1,subsetsum+1):
+            if j<l[i-1]:
+                dp[i][j]=dp[i-1][j]
+            if j>=l[i-1]:
+                dp[i][j]=(dp[i-1][j] or dp[i-1][j-l[i-1]])
+    return dp[-1][-1]
+if __name__=="__main__":
+    l=[3,34,4,12,5,2]
+    subsetsum=9
+    n=len(l)
+    if isSubsetSum(l,subsetsum,n)==True:
+        print("Found a subset with given sum")
+    else:
+        print("No subset with given sum")
